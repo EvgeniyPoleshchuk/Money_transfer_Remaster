@@ -1,6 +1,4 @@
-package ru.netoology.exception;
-
-import lombok.extern.slf4j.Slf4j;
+package ru.netology.exception;
 
 
 public class InvalidCardData extends RuntimeException {

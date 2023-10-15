@@ -1,9 +1,10 @@
-package ru.netoology;
+package ru.netology;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class MoneyTransferApplication {
 
     public static void main(String[] args) {

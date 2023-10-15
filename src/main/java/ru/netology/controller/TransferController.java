@@ -1,30 +1,26 @@
-package ru.netoology.controller;
+package ru.netology.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.netoology.model.ConfirmOperation;
-import ru.netoology.model.CreditCart;
-import ru.netoology.web.response.TransferResponse;
-import ru.netoology.service.TransferService;
+import ru.netology.dto.ConfirmOperation;
+import ru.netology.model.CreditCard;
+import ru.netology.dto.TransferResponse;
+import ru.netology.service.TransferServiceImpl;
 
 @RestController
-@Slf4j
-@CrossOrigin()
+@RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class TransferController {
-    private final TransferService transferService;
+    private final TransferServiceImpl transferServiceImpl;
 
-    public TransferController(TransferService transferService) {
-        this.transferService = transferService;
+    @PostMapping("/transfer")
+    public ResponseEntity<TransferResponse> response (@RequestBody CreditCard creditCard){
+        return ResponseEntity.ok(transferServiceImpl.doTransfer(creditCard));
     }
-
-    @PostMapping("transfer")
-    public ResponseEntity<TransferResponse> response (@RequestBody CreditCart creditCart){
-        return ResponseEntity.ok(transferService.doTransfer(creditCart));
-    }
-    @PostMapping("confirmOperation")
+    @PostMapping("/confirmOperation")
     public ResponseEntity<TransferResponse> responseEntity(@RequestBody ConfirmOperation operation){
-        return ResponseEntity.ok(transferService.doConfirm(operation));
+        return ResponseEntity.ok(transferServiceImpl.doConfirm(operation));
 
     }
 
